@@ -2,7 +2,7 @@ name: Publish Release to NPMjs when pr was successfully merged from develop bran
 
 on:
   pull_request:
-    branches: ['develop', 'master']
+    branches: ['develop']
     types:
       - closed
 
@@ -16,7 +16,7 @@ jobs:
 
   publish:
     runs-on: ubuntu-latest
-    needs: [build]
+    needs: [if_merged]
     steps:
       - uses: actions/checkout@v3
       - name: Use Node.js ${{ matrix.node-version}}
