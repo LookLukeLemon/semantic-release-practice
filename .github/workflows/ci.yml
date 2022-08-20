@@ -7,11 +7,10 @@ on:
   push:
     branches: [ "develop" ]
   pull_request:
-    branches: [ "develop" ]
+    branches: [ "*" ]
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     strategy:
@@ -28,3 +27,16 @@ jobs:
         cache: 'npm'
     - run: npm ci
     - run: npm test
+    
+  public:
+    runs-on: ubuntu-latest
+    if: ${{ github.ref == 'refs/heads/master'}}
+    needs: [build]
+    steps: 
+    - uses: actions/checkout@v3
+    - name: Use Node.js ${{ matrix.node-version}}
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ matrix.node-version }}
+    - run: npm ci
+    - run: npm run semantic-release
