@@ -21,7 +21,7 @@
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./test/jest-e2e.json",
-    "semantic-release": "semantic-release --branches develop"
+    "semantic-release": "semantic-release"
   },
   "dependencies": {
     "@nestjs/common": "^9.0.0",
@@ -81,5 +81,10 @@
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
     }
+  },
+  "release": {
+    "branches": [
+      "develop"
+    ]
   }
 }
