@@ -1,8 +1,8 @@
-name: Docker Image CD
+name: Publish Release to NPMjs when pr was successfully merged from develop branch
 
 on:
   pull_request:
-    branches: ['develop']
+    branches: ['develop', 'master']
     types:
       - closed
 
