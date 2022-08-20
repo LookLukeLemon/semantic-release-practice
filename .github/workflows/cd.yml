@@ -1,19 +1,10 @@
 name: Publish Release to NPMjs when pr was successfully merged from develop branch
 
 on:
-  pull_request:
+  push:
     branches: ['master']
-    types:
-      - closed
 
 jobs:
-  if_merged:
-    if: github.event.pull_request.merged == true
-    runs-on: ubuntu-latest
-    steps:
-      - run: |
-          echo PR #${{ github.event.number }} has been merged
-
   publish:
     runs-on: ubuntu-latest
     steps:
